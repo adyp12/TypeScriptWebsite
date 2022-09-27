@@ -1,0 +1,8 @@
+-- Start Web Server
+ng serve
+
+-- Generate Component
+ng g c NameOfNewComponent
+
+-- Generate Serice
+ng g s NameOfNewService
