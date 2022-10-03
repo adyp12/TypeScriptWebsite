@@ -6,3 +6,9 @@ ng g c NameOfNewComponent
 
 -- Generate Serice
 ng g s NameOfNewService
+
+-- Generate Pipe
+ng g p NameOfNewPipe
+
+-- Download all Dependancies
+npm install

@@ -3,3 +3,35 @@
 <ul>
     <li *ngFor="let gig of gigs"> {{ gig }}</li>
 </ul>
+
+<table>
+    <tr>
+        <td [attr.colspan]="colSpan"></td>
+    </tr>
+</table>
+
+<div (click)="onDivClick()">
+    <!--Class Binding-->
+    <button class="btn btn-primary" [class.active]="isActive">One</button><br>
+    <!--Style Binding-->
+    <button class="btn btn-primary" [style.backgroundColor]="isActive ? 'blue' : 'white'">Two</button><br>
+    <!--Event Binding-->
+    <button class="btn btn-primary" (click)="onSave($event)">Three</button><br>
+</div>
+<!--Two Way Binding-->
+<input [(ngModel)]="search" (keyup.enter)="onKeyUp()"/>
+
+<br>
+
+<!-- Use pipes for formatting to create a consistent format -->
+<p>
+    {{ gig.artist | uppercase }} <br>
+    {{ gig.venue | lowercase }} <br>
+    {{ gig.date | date:'short':'BST':'en-GB' }} <br>
+    {{ gig.price | currency:'GBP' }} <br>
+    {{ gig.rating | number:'1.2-2' }} <br>
+</p>
+
+<!-- Testing Title Case Pipe -->
+<input [(ngModel)]="titleCaseTest"/>
+<p>{{ titleCaseTest | titleCase }}</p>

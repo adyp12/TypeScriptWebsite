@@ -8,17 +8,25 @@ import { GigsService } from './gigs.service';
 import { GigsComponent } from './gigs/gigs.component';
 import { ArtistsComponent } from './artists/artists.component';
 import { ArtistsService } from './artists.service';
+import { FormsModule } from '@angular/forms';
+import { SummaryPipe } from './summary.pipe';
+import { FavouriteComponent } from './favourite/favourite.component';
+import { TitleCasePipe } from './title-case.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     GigComponent,
     GigsComponent,
-    ArtistsComponent
+    ArtistsComponent,
+    SummaryPipe,
+    FavouriteComponent,
+    TitleCasePipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     GigsService,
