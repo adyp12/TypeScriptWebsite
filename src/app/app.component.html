@@ -1,4 +1,15 @@
 <h1>Adam's Website</h1>
-<app-gigs></app-gigs>
+<!--<app-gigs></app-gigs>
 
-<favourite></favourite>
+<favourite [is-favourite]="post.isFavourite" (change)="onFavouriteChange($event)"></favourite>
+
+<bootstrap-panel>
+    <ng-container class="header">Header</ng-container>
+    <ng-container class="title"><h3>Body</h3></ng-container>
+    <ng-container class="text">Text</ng-container>
+</bootstrap-panel>-->
+
+<like
+    [likesCount]="tweet.likesCount"
+    [isActive]="tweet.isLiked">
+</like>

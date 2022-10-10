@@ -1,10 +1,24 @@
 import { Component } from '@angular/core';
+import { FavouriteChangedEventArgs } from './favourite/favourite.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Adam\'s Website';
+  post = {
+    title: "Title",
+    isFavourite: true
+  }
+
+  tweet = {
+    body: "Test",
+    isLiked: true,
+    likesCount: 10
+  }
+
+  onFavouriteChange(eventArgs: FavouriteChangedEventArgs){
+    console.log("Fav Changed: ", eventArgs)
+  }
 }

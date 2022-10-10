@@ -4,7 +4,7 @@ import { GigsService } from '../gigs.service';
 @Component({
   selector: 'app-gigs',
   templateUrl: './gigs.component.html',
-  styleUrls: ['./gigs.component.scss']
+  styleUrls: ['./gigs.component.css']
 })
 
 export class GigsComponent implements OnInit {
