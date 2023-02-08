@@ -4,7 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class GigsService {
-  gigs = ["gig1", "gig2", "gig3"]
+  gigs = [
+    { id: 1, name: "gig1" },
+    { id: 2, name: "gig2" },
+    { id: 3, name: "gig3" }
+  ]
 
   constructor() { }
 

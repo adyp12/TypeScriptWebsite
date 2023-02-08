@@ -10,5 +10,19 @@ ng g s NameOfNewService
 -- Generate Pipe
 ng g p NameOfNewPipe
 
+-- Generate Directive
+ng g d NameOfNewDirective
+
 -- Download all Dependancies
 npm install
+
+-- HTML
+Quickly create nested Divs
+
+div.zippy>div.heading+div.body 
+==
+
+<div class="zippy">
+    <div class="heading"></div>
+    <div class="body"></div>
+</div>

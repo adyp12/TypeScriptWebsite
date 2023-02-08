@@ -1,9 +1,5 @@
 <h2>{{ getTitle() }}</h2>
 
-<ul>
-    <li *ngFor="let gig of gigs"> {{ gig }}</li>
-</ul>
-
 <table>
     <tr>
         <td [attr.colspan]="colSpan"></td>
@@ -25,13 +21,32 @@
 
 <!-- Use pipes for formatting to create a consistent format -->
 <p>
-    {{ gig.artist | uppercase }} <br>
-    {{ gig.venue | lowercase }} <br>
-    {{ gig.date | date:'short':'BST':'en-GB' }} <br>
-    {{ gig.price | currency:'GBP' }} <br>
-    {{ gig.rating | number:'1.2-2' }} <br>
+    {{ tempGig.artist | uppercase }} <br>
+    {{ tempGig.venue | lowercase }} <br>
+    {{ tempGig.date | date:'short':'BST':'en-GB' }} <br>
+    {{ tempGig.price | currency:'GBP' }} <br>
+    {{ tempGig.rating | number:'1.2-2' }} <br>
 </p>
 
 <!-- Testing Title Case Pipe -->
 <input [(ngModel)]="titleCaseTest"/>
 <p>{{ titleCaseTest | titleCase }}</p>
+
+<br><br>
+<button (click)="loadGigs(gigsService)">Load Gigs</button>
+<button (click)="onAdd()">Add</button>
+<div *ngIf="gigs.length > 0; then gigsList else noGigs"></div>
+<ng-template #gigsList>
+    <h3>List of Gigs</h3>
+    <ul>
+        <li *ngFor="let gig of gigs; index as i;">{{ i }} - {{ gig.name }} <button (click)="onRemove(gig)">Remove</button></li>
+    </ul>
+</ng-template>
+
+<ng-template #noGigs>
+    No Gigs Yet
+</ng-template>
+
+<br>
+<br>
+<br>

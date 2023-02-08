@@ -10,15 +10,15 @@ import { GigsService } from '../gigs.service';
 export class GigsComponent implements OnInit {
 
   title = "List of Gigs Attended";
-  gigs;
-  colSpan;
+  gigs: { id: number; name: string; }[] = [];
+  colSpan: number = 0;
   isActive = false;
   search = "";
   titleCaseTest: any;
+  gigsService = new GigsService;
 
-  constructor(service: GigsService) {
-    this.gigs = service.getGigs();
-    this.colSpan = 2;
+  constructor() {
+    
   }
 
   ngOnInit(): void {
@@ -42,7 +42,27 @@ export class GigsComponent implements OnInit {
     console.log(this.search);
   }
 
-  gig = {
+  onAdd(){
+    this.gigs.push({ id: 4, name: "gig4"});
+  }
+
+  onRemove(gig: { id: number; name: string; }){
+    let index = this.gigs.indexOf(gig);
+    this.gigs.splice(index, 1);
+  }
+
+  loadGigs(service: GigsService){
+    this.gigs = service.getGigs();
+    this.colSpan = 2;
+  }
+ /* Not nessesary unless experincing performance issues rendering lists dynamically
+ add: trackBy: trackCourse into *ngFor in component when using
+  trackCourse(index: any, gig: { id: number; name: string; }){
+    return gig ? gig.id : undefined;
+  }
+  */
+
+  tempGig = {
     artist: "The Stoned Immaculate",
     venue: "Mcullis?",
     date: new Date(2022, 7, 15),
