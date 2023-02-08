@@ -1,11 +1,71 @@
-<form>
-    <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input id="firstName" type="text" class="form-control">
+<form #f="ngForm" (ngSubmit)="submit(f)">
+    <div ngModelGroup="contact" #contact="ngModelGroup">
+        <div *ngIf="!contact.valid">Contact Information Invalid</div>
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input 
+                required 
+                minlength="3" 
+                pattern="banana" 
+                ngModel 
+                name="firstName" 
+                #firstName="ngModel"
+                id="firstName" 
+                type="text" 
+                class="form-control">
+            <div 
+                class="alert alert-danger" 
+                *ngIf="firstName.touched && !firstName.valid">
+                <div 
+                    *ngIf="firstName?.errors?.['required']">
+                    First Name is Required
+                </div>
+                <div 
+                    *ngIf="firstName?.errors?.['minlength']">
+                    First Name must be more than {{ firstName?.errors?.['minlength'].requiredLength }} characters
+                </div>
+                <div 
+                    *ngIf="firstName?.errors?.['pattern']">
+                    First Name Does Not Match the Pattern
+                </div>
+            </div>
+        </div>
     </div>
+    
     <div class="form-group">
         <label for="comment">Comment</label>
-        <textarea id="comment" cols="30" rows="10" class="form-control"></textarea>
+        <textarea 
+            required 
+            ngModel 
+            name="comment" 
+            id="comment" 
+            cols="30" 
+            rows="10" 
+            class="form-control">
+        </textarea>
     </div>
-    <button class="btn btn-primary">Submit</button>
+
+    <div class="checkbox">
+        <label for="">
+            <input type="checkbox" ngModel name="isSubscribed"> Subscribe to mailing list
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="">Contact Method</label>
+        <select ngModel name="contactMethod" id="contactMethod" class="form-control">
+            <option value="0">Please select a contact method below</option>
+            <option *ngFor="let method of contactMethods" [value]="method.id">{{ method.name }}</option>
+        </select>
+    </div>
+
+    <div *ngFor="let method of contactMethods" type="radio">
+        <label for="">
+            <input ngModel type="radio" name="contactMethod" [value]="method.id">
+            {{ method.name }}
+        </label>
+    </div>
+
+    <p name="debug">{{ f.value | json }}</p>
+
+    <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
 </form>
